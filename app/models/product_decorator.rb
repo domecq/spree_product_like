@@ -3,6 +3,6 @@ Spree::Product.class_eval do
   scope :likes_ranking, ->{ joins(:likes).order('likes_count DESC') }
 
   def liked_by?(user)
-    likes.exists?(user: user)
+    likes.exists?(user_id: user.id)
   end
 end
