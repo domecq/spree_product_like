@@ -1,11 +1,11 @@
-<% if current_spree_user.present? %>
+<% if current_user.present? %>
   <div class="product-likes" data-hook="product-likes">
 
-  <% if current_spree_user.admin? %>
+  <% if current_user.admin? %>
     <%= pluralize(@product.likes_count, t('spree_product_like.likes.like')) %>
 
   <% else %>
-    <% if @product.liked_by?(current_spree_user) %>
+    <% if @product.liked_by?(current_user) %>
       <div data-hook="product-dislike-button">
         <%= button_to @product.likes_count, unlike_product_path(id: @product.id), id: 'like-button', class: 'button dislike', title: t('spree_product_like.likes.unlike'), type: :submit, method: :delete %>
       </div>
