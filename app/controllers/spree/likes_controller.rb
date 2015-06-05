@@ -12,9 +12,13 @@ class Spree::LikesController < Spree::StoreController
   end
 
   def index
-    @searcher = build_searcher(params)
-    @products = @searcher.retrieve_products
-    @products = @products.where(id: current_user.likes.pluck(:product_id))
+    if !current_user.nil?
+      @searcher = build_searcher(params)
+      @products = @searcher.retrieve_products
+      @products = @products.where(id: current_user.likes.pluck(:product_id))
+    else
+      redirect_to :root
+    end
   end
 
   private
