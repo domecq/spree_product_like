@@ -3,12 +3,12 @@ class Spree::LikesController < Spree::StoreController
   helper 'spree/products'
   def like_product
     current_user.like(product)
-    redirect_to product
+    render :json => {status: 'ok', product_id: product.id}
   end
 
   def unlike_product
     product.likes.where(user_id: current_user.id).destroy_all
-    redirect_to product
+    render :json => {status: 'ok', product_id: product.id}
   end
 
   def index
