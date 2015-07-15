@@ -1,4 +1,4 @@
-Spree::User.class_eval do
+User.class_eval do
   has_many :likes
 
   def like(product)
